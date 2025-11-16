@@ -4,42 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>weather update</title>
-    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- apis  -https://api.openweathermap.org/data/2.5/weather?q={jaipur}&appid={7c7ce5571a36cd91934fa24ff27e377a}&units=metric 
+     255d9c93c510cdfa717a5a36089faa2a -->
 </head>
 <body>
     <h2>Weather update</h2>
-    <div class = "card">
+    <div class = "card"> 
         <div class = "search">
-            <input id="searchinput" type="text"placeholder=" Enter city name" spellcheck="false"></label>
-            <button id="btn"><img src="img/search.png" alt="a " ></button>
+            <input id="searchinput" type="text"placeholder=" Enter city name"id ="nam" spellcheck="false"></label>
+            <button id="btn"><img src="img/search.png" alt=" fgg" ></button>
         </div>
         <div class="error">
-            <p>Invalid city name</p>
+            <!-- <p>Invalid city name</p> -->
         </div>
     
         <div class="weather"> 
-            <img src="img/rain.png" alt="a" class="weather-icon">
-            <h2 class="temp"></h2>
-            <h2 class="city"> </h2>
+            <img src="img/rain.png" alt="ghhg" id="weather-icon">
+           <h2 class="temp" ></h2>
+          
+            <p class="feels-like"></p> 
+            <h2 class="city"></h2>
             <div class="details">
                 <div class="col">
-                    <img src="img/humidity.png" alt="a" >
+                    <img src="img/humidity.png" alt="hgfh" >
                     <div>
                         <p class="humidity"></p>
-                        <p>Humidity</p>
+                        <p>humidity</p>
                     </div>
                 </div>
                 <div class="col">
-                    <img src="img/wind.png" alt="a">
+                    <img src="img/wind.png" alt="hg">
                     <div>
                         <p class="wind"></p>
-                        <p>Wind Speed</p>
+                        <p>wind speed</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="script2.js"></script>
+    <script src="script.js"></script>
+     
+
+     </script>
+     
     
 </body>
 </html>
