@@ -9,7 +9,7 @@ body{
 
 }
 .card{
-    width: 40%; /*90*/
+    width: 40%; 
     max-width: 470%;
     background: linear-gradient(135deg,#00feba,#5b548a);
     color: #fff;
@@ -25,7 +25,7 @@ body{
     align-items: center;
     justify-content: space-between;
 
-    /* padding: 20px;   */
+  
 }
 
 .search button{
@@ -62,7 +62,6 @@ h2{
     font-size: 18px;
 }
 
-
 .weather-icon{
     width: 170px;
     margin-top: 30px;
@@ -96,9 +95,7 @@ h2{
     font-size:28px ;
     margin-top: -6px;
 }
-/* .weather{
-    display: none;
-} */
+
 .error{
     text-align: left;
     margin-left: 10px;
