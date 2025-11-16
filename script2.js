@@ -1,54 +1,56 @@
+// 7c7ce5571a36cd91934fa24ff27e377a  
+//https://api.openweathermap.org/data/2.5/weather?q=jaipur&appid=7c7ce5571a36cd91934fa24ff27e377a
+
+
+const apiKey = "7c7ce5571a36cd91934fa24ff27e377a";
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather";
+
+const searchBox = document.querySelector("#searchinput");  
 const searchBtn = document.querySelector("#btn");
-const weatherIcon = document.querySelector(".weather-icon");
+const weatherIcon = document.querySelector("#weather-icon");
 
-const options = {
-    method: 'GET',
-    headers: {
-        'x-rapidapi-key': '9927717f5amshc20d1c3328c775ep1bc510jsnde25ca2eb4c0',
-        'x-rapidapi-host': 'yahoo-weather5.p.rapidapi.com'
+
+async function checkWeather(city){
+  
+const response = await fetch(`${apiUrl}?q=${city}&appid=${apiKey}&units=metric`);
+     
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
     }
-};
+    const data = await response.json();
+      
+    console.log(data);
+    // console.log(data.value);
 
-async function checkWeather(key) {
+    document.querySelector(".city").innerHTML = data.name;
+    document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "℃";
+    document.querySelector(".feels-like").innerHTML = "Feels like " + Math.round(data.main.feels_like) + "℃";
+    document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+    document.querySelector(".wind").innerHTML = data.wind.speed*10 + "km/h";
+    
 
-   
-    // key is name of city!!
-    try {
-        const url = `https://yahoo-weather5.p.rapidapi.com/weather?location=${key}&format=json&u=c`;
-        const response = await fetch(url, options);
-        const data = await response.json();
-        console.log(data);
-
-        document.querySelector(".city").innerHTML = data.location.city;
-        document.querySelector(".temp").innerHTML = Math.round(data.current_observation.condition.temperature) + "℃";
-        document.querySelector(".humidity").innerHTML = data.current_observation.atmosphere.humidity + "%";
-        document.querySelector(".wind").innerHTML = data.current_observation.wind.speed + "km/h";
-
-        if (data.current_observation.condition.text == "Clouds") {
-            weatherIcon.src = ""; //  use a cloudy sky image
-        }
-        else if (data.current_observation.condition.text == "Clear") {
-            weatherIcon.src = ""; //  use a clear sky image
-        }
-        else if (data.current_observation.condition.text == "Rain") {
-            weatherIcon.src = ""; //  use a rain sky image
-        }
-        else if (data.current_observation.condition.text == "Partly Cloudy") {
-            weatherIcon.src = ""; //  use a partly cloudy image
-        }
-        else if (data.current_observation.condition.text== "Mist") {
-            weatherIcon.src = ""; // use a fog image
-        }
-
-    } catch (error) {
-        console.error(error);
+    if(data.weather[0].main == "Clouds"){
+        weatherIcon.src = "img/clouds.png";
     }
+    else if(data.weather[0].main == "Clear"){
+        weatherIcon.src = "img/clear.png";
+    }
+    else if(data.weather[0].main == "Rain"){
+        weatherIcon.src = "img/clear.png";
+    }
+    else if(data.weather[0].main == "Drizzle"){
+        weatherIcon.src = "img/drizzle.png";
+    }
+    else if(data.weather[0].main == "Mist"){
+        weatherIcon.src = "img/mist.png";
+    }
+
+    document.querySelector(".weather").style.display = "block";
 }
 
-
-// onlick of btn.
-searchBtn.addEventListener("click", () => {
-    const searchBox = document.querySelector("#searchinput");
-    console.log(searchBox.value);
-    checkWeather(searchBox.value);
+searchBtn.addEventListener("click", ()=>{
+        const searchBox = document.querySelector("#searchinput");
+        checkWeather(searchBox.value);
+  
 })
+
